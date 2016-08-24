@@ -19,6 +19,8 @@ gem 'jbuilder',                '2.4.1'
 gem 'chartkick'
 gem 'groupdate'
 
+gem 'hightop'
+
 group :development, :test do
   gem 'pg',   '0.18.4'
   gem 'byebug',  '9.0.0', platform: :mri

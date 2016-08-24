@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821043533) do
+ActiveRecord::Schema.define(version: 20160823110851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mblogs", force: :cascade do |t|
+    t.string   "mid"
+    t.datetime "created_timestamp"
+    t.text     "content"
+    t.string   "source"
+    t.string   "user_id"
+    t.string   "user_name"
+    t.string   "user_gender"
+    t.integer  "user_status_count"
+    t.integer  "user_fansNum"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
   create_table "microposts", force: :cascade do |t|
     t.text     "content"
