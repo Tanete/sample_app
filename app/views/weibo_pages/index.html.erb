@@ -1,17 +1,11 @@
-<% provide(:title, 'Weibo page') %>
-<h1>Statistics</h1>
-<%= pie_chart @mblogs.group(:user_gender).count %>
-<%= bar_chart @mblogs.group(:source).where("source IS NOT NULL").order("count_all DESC, source").limit(5).count %>
-<%= pie_chart @mblogs.group(:source).where("source IS NOT NULL").order("count_all DESC, source").limit(5).count %>
-<%= area_chart @mblogs.group_by_day(:created_timestamp, time_zone: 'Beijing', 
-                  range: 8.hours.ago(("2016-08-19").to_datetime)..(8.hours.ago(Date.today)-1)).count %>
-<% m = @mblogs.group_by_hour_of_day(:created_timestamp, time_zone: 'Beijing',
-                  range: 8.hours.ago(("2016-08-19").to_datetime)..(8.hours.ago(Date.today)-1)).count %>
-<% 
-  m.each do |hour, count|
-    m[hour] = count / 5
-  end
-%>
-<%= line_chart m %>
-<%= pie_chart @mblogs.group(:source).where("content LIKE '%写了%' OR content LIKE '%发表%'").order("count_all DESC, source").limit(5).count %>
-<%= pie_chart @mblogs.group(:source).where("content LIKE '%推荐%'").order("count_all DESC, source").limit(5).count %>
+<% provide(:title, 'Weibo Search Statistics') %>
+<h1>Statistics of Posts Related with JianShu on Weibo</h1><br>
+<h2><%= "Datebase Last Updated: #{last_update_time}" %></h2><br><br>
+<%= mblog_today_count %>
+<%= mblog_by_gender %> <br><br>
+<%= mblog_top_source_bar %> <br><br>
+<%= mblog_top_source_pie %> <br><br>
+<%= mblog_group_by_day %> <br><br>
+<%= mblog_group_by_hour_of_day %> <br><br>
+<%= mblog_publish_top_source %> <br><br>
+<%= mblog_share_top_source %> <br><br>

@@ -17,5 +17,16 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
-  get 'weibo_pages/index'
+  get '/weibo_record', to: 'weibo_pages#index'
+  resources :charts, only: [] do
+    collection do
+      get 'mblog_by_gender'
+      get 'mblog_top_source'
+      get 'mblog_group_by_day'
+      get 'mblog_group_by_hour_of_day'
+      get 'mblog_publish_top_source'
+      get 'mblog_share_top_source'
+      get 'mblog_today_count'
+    end
+  end
 end
