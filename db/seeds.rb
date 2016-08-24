@@ -33,15 +33,15 @@ following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
 
-# mblogs
-100.times do
-  Mblog.create!(mid: '32123123123',
-                created_timestamp: rand(5.days.ago..Time.now),
-                content: "I love jianshu",
-                source: "Jianshu IOS",
-                user_id: "111",
-                user_name: "JJJ",
-                user_gender: "f",
-                user_status_count: 1,
-                user_fansNum: 1)
-end
+# # mblogs
+# 100.times do
+#   Mblog.create!(mid: '32123123123',
+#                 created_timestamp: rand(5.days.ago..Time.now),
+#                 content: "I love jianshu",
+#                 source: "Jianshu IOS",
+#                 user_id: "111",
+#                 user_name: "JJJ",
+#                 user_gender: "f",
+#                 user_status_count: 1,
+#                 user_fansNum: 1)
+# end

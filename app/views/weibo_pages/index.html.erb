@@ -1,10 +1,17 @@
 <% provide(:title, 'Weibo page') %>
 <h1>Statistics</h1>
-<%= bar_chart @mblogs.group(:user_gender).count %>
 <%= pie_chart @mblogs.group(:user_gender).count %>
 <%= bar_chart @mblogs.group(:source).where("source IS NOT NULL").order("count_all DESC, source").limit(5).count %>
 <%= pie_chart @mblogs.group(:source).where("source IS NOT NULL").order("count_all DESC, source").limit(5).count %>
-<%= line_chart @mblogs.group_by_day(:created_timestamp, last: 5, current: false).count %>
-<%= line_chart @mblogs.group_by_hour_of_day(:created_timestamp, last: 5, current: false).count %>
+<%= area_chart @mblogs.group_by_day(:created_timestamp, time_zone: 'Beijing', 
+                  range: 8.hours.ago(("2016-08-19").to_datetime)..(8.hours.ago(Date.today)-1)).count %>
+<% m = @mblogs.group_by_hour_of_day(:created_timestamp, time_zone: 'Beijing',
+                  range: 8.hours.ago(("2016-08-19").to_datetime)..(8.hours.ago(Date.today)-1)).count %>
+<% 
+  m.each do |hour, count|
+    m[hour] = count / 5
+  end
+%>
+<%= line_chart m %>
 <%= pie_chart @mblogs.group(:source).where("content LIKE '%写了%' OR content LIKE '%发表%'").order("count_all DESC, source").limit(5).count %>
 <%= pie_chart @mblogs.group(:source).where("content LIKE '%推荐%'").order("count_all DESC, source").limit(5).count %>
