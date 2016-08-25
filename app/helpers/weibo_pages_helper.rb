@@ -7,7 +7,9 @@ module WeiboPagesHelper
   end
   
   def mblog_today_count
-    column_chart mblog_today_count_charts_path, library: {
+    column_chart mblog_today_count_charts_path, 
+    xtitle: "Hour of Day", ytitle: "Counts of Posts",
+    library: {
         title: {
           display: true,
           text: 'Posts Counts in Last 24 Hours',
