@@ -10,7 +10,7 @@ module WeiboPagesHelper
     column_chart mblog_today_count_charts_path, library: {
         title: {
           display: true,
-          text: 'Posts Counts of Today',
+          text: 'Posts Counts in Last 24 Hours',
           fontSize: 20
         }
     }
