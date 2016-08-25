@@ -2,8 +2,8 @@ module WeiboPagesHelper
   # Helper for chartkick options
   
   def last_update_time
-    last = Mblog.order(:created_timestamp).last
-    last.created_timestamp.localtime("+08:00")
+    last = Mblog.order(:created_timestamp).where("source IS NOT NULL").last
+    last.created_timestamp.localtime('+08:00')
   end
   
   def mblog_today_count
@@ -20,11 +20,11 @@ module WeiboPagesHelper
   
   def mblog_by_gender
     pie_chart  mblog_by_gender_charts_path, library: {
-        title: {
-          display: true,
-          text: 'UserSex',
-          fontSize: 20
-        }
+      title: {
+        display: true,
+        text: 'UserSex',
+        fontSize: 20
+      }
     }
   end
   
