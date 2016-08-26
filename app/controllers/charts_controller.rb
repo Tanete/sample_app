@@ -1,8 +1,8 @@
 class ChartsController < ApplicationController
   
   @@start_date = ("2016-08-19").to_datetime
-  @@range = 8.hours.ago(@@start_date)..(8.hours.ago(Date.today)-1)
-  @@range_today = (24.hours.ago(Time.zone.now)-59.minute)..Time.zone.now
+  @@range = 8.hours.ago(@@start_date)..(8.hours.ago(Time.zone.today)-1)
+  @@range_today = 24.hours.ago(Time.zone.now)..Time.zone.now
   
   def mblog_today_count
     result = Mblog.group_by_hour(:created_timestamp,
