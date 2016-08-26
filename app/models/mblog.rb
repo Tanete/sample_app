@@ -5,6 +5,7 @@ class Mblog < ApplicationRecord
   def self.hunt(search_word, page_min, page_max)
     counter = 0
     a = WeiboSearch.new(search_word)
+    # each page
     (page_min..page_max).each do |page|
       search_url = a.url(page)
       json_res = a.do_search(search_url)
@@ -20,6 +21,6 @@ class Mblog < ApplicationRecord
         end
       end
     end
-    puts "created: #{counter} posts"
+    logger.info "created: #{counter} posts"
   end
 end
