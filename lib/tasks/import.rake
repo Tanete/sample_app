@@ -18,6 +18,6 @@ namespace :import do
       puts "#{row['mid']} - #{mblog.errors.full_messages.join(',')}" if mblog.errors.any?
       counter += 1 if mblog.persisted?
     end
-    logger.info "rake task: imported #{counter} mblogs"
+    Rails.logger.info "rake task: imported #{counter} mblogs"
   end
 end
