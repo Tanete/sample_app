@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
   resources :relationships,       only: [:create, :destroy]
-  get '/weibo_record', to: 'weibo_pages#index'
+  get '/weibo-record', to: 'weibo_pages#index'
   resources :charts, only: [] do
     collection do
       get 'mblog_by_gender'

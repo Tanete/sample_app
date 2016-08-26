@@ -56,6 +56,6 @@ class ChartsController < ApplicationController
     end
     
     def get_range
-      range = 8.hours.ago(@@start_date)..(8.hours.ago(Time.zone.today)-1)
+      range = (@@start_date + 8.hour)..(Time.zone.today + 8.hour)
     end
 end
