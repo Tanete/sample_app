@@ -4,8 +4,8 @@ class ChartsController < ApplicationController
   
   def mblog_today_count
     result = Mblog.group_by_hour(:created_timestamp,
-              time_zone = "Beijing", range: get_range_today, 
-              current: true, format: "%l %P").count
+                                time_zone = "Beijing", range: get_range_today, 
+                                current: true, format: "%l %P").count
     render json: result
   end
   
@@ -16,7 +16,7 @@ class ChartsController < ApplicationController
   
   def mblog_top_source
     result = Mblog.group(:source).where("source IS NOT NULL")
-                              .order("count_all DESC, source").limit(5).count
+                                .order("count_all DESC, source").limit(5).count
     render json: result
   end
   
@@ -52,11 +52,11 @@ class ChartsController < ApplicationController
     def get_range_today
       start = 24.hours.ago(Time.zone.now).change(:min=>0) + 1.hour + 1.second
       ending = Time.zone.now.change(:min=>0) + 1.hour- 1.second
-      range_today = start..ending
+      start..ending
     end
     
     def get_range
       Time.zone = 'Beijing'
-      range = (@@start_date - 8.hour)..(Time.zone.today - 1.second)
+      (@@start_date - 8.hour)..(Time.zone.today - 1.second)
     end
 end
